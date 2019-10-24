@@ -99,6 +99,22 @@ class Key(object):
                 "Line '{}' is not a valid keyline".format(line))
         return "".join(keychars)
 
+    @classmethod
+    def random_key(cls):
+        from os import urandom
+        key = []
+        alphabet = cls.VALID_CHARS
+
+        for i in range(cls.LINES_IN_KEY):
+            available_letters = list(alphabet)
+            line = ''
+            for _ in range(len(cls.VALID_CHARS)):
+                line += available_letters.pop(ord(urandom(1)) % len(available_letters))
+            key.append(line)
+        key.append('')
+
+        return Key("\n".join(key))
+
     def __init__(self, keystream):
         if isinstance(keystream, str):
             import StringIO
