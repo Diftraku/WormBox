@@ -28,9 +28,9 @@
 # Authors
 # Antti Nilakari <antti.nilakari@gmail.com>
 
-from encapsulation import marshal, unmarshal
-from encryption import decrypt, encrypt, InvalidCiphertext
-from key import Key
+from wormbox.encapsulation import marshal, unmarshal
+from wormbox.encryption import decrypt, encrypt, InvalidCiphertext
+from wormbox.key import Key
 
 # Default key
 TEST_KEY = (
@@ -72,8 +72,7 @@ def read_until_empty_line(prefix=""):
         lines.append(line)
     return "\n".join(lines)
 
-
-if __name__ == "__main__":
+def main():
     print()
 
     print("Loaded key:")
@@ -119,3 +118,7 @@ if __name__ == "__main__":
 
         else:
             print("Invalid command, try again")
+
+
+if __name__ == "__main__":
+    main()
