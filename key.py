@@ -70,7 +70,7 @@ class Key(object):
             keylines.append(keyline)
 
         if len(keylines) != cls.LINES_IN_KEY:
-            print len(keylines)
+            print(len(keylines))
             raise cls.InvalidKey("Key was invalid")
         return keylines
 
@@ -105,7 +105,7 @@ class Key(object):
         key = []
         alphabet = cls.VALID_CHARS
 
-        for i in range(cls.LINES_IN_KEY):
+        for _ in range(cls.LINES_IN_KEY):
             available_letters = list(alphabet)
             line = ''
             for _ in range(len(cls.VALID_CHARS)):
@@ -117,8 +117,8 @@ class Key(object):
 
     def __init__(self, keystream):
         if isinstance(keystream, str):
-            import StringIO
-            keystream = StringIO.StringIO(keystream)
+            import io
+            keystream = io.StringIO(keystream)
         self.key = self.read_and_validate(keystream)
 
     def __str__(self):

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
 # WormBox v0.1
@@ -66,7 +66,7 @@ TEST_KEY = (
 def read_until_empty_line(prefix=""):
     lines = []
     while True:
-        line = raw_input(prefix)
+        line = input(prefix)
         if len(line) == 0:
             break
         lines.append(line)
@@ -74,48 +74,48 @@ def read_until_empty_line(prefix=""):
 
 
 if __name__ == "__main__":
-    print
+    print()
 
-    print "Loaded key:"
+    print("Loaded key:")
     key = Key(TEST_KEY)
-    print key
+    print(key)
 
     while True:
-        print
-        print "1. Encrypt"
-        print "2. Decrypt"
-        print "e. Exit"
-        cmd = raw_input("> ")
+        print()
+        print("1. Encrypt")
+        print("2. Decrypt")
+        print("e. Exit")
+        cmd = input("> ")
 
         if cmd == "1":
-            print
-            print "Enter plaintext message (enter a newline to stop):"
+            print()
+            print("Enter plaintext message (enter a newline to stop):")
             plaintext = read_until_empty_line("> ")
 
             marshaled = marshal(plaintext)
             ciphertext = encrypt(marshaled, key.key)
-            print
-            print "Encrypted message:"
-            print ciphertext
+            print()
+            print("Encrypted message:")
+            print(ciphertext)
 
         elif cmd == "2":
-            print "Enter ciphertext message (enter a newline to stop):"
+            print("Enter ciphertext message (enter a newline to stop):")
             try:
                 ciphertext = read_until_empty_line("> ")
-                print
-                print "Decrypted message:"
+                print()
+                print("Decrypted message:")
 
                 marshaled = decrypt(ciphertext, key.key)
-                print "Marshaled:", marshaled
+                print("Marshaled:", marshaled)
 
                 plaintext = unmarshal(marshaled)
-                print "Decrypted:", plaintext
+                print("Decrypted:", plaintext)
 
             except InvalidCiphertext as e:
-                print e
+                print(e)
 
         elif cmd == "e":
             break
 
         else:
-            print "Invalid command, try again"
+            print("Invalid command, try again")
